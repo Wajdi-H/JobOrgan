@@ -48,10 +48,10 @@ public class ChercheurJ implements Serializable {
 	
 	
     @ManyToMany
-    @JoinTable(name="chercheurExeperiances",joinColumns=
+    @JoinTable(name="chercheurdisponibite",joinColumns=
     @JoinColumn(name="chercheur"),inverseJoinColumns=
-    @JoinColumn(name="experiances"))
-    private List<Experiance>experiances ;
+    @JoinColumn(name="disponiblite"))
+    private List<Disponiblite>disponiblites ;
 
 
 	public Long getIdC() {
@@ -194,20 +194,20 @@ public class ChercheurJ implements Serializable {
 	}
 
 
-	public List<Experiance> getExperiances() {
-		return experiances;
+	public List<Disponiblite> getDisponiblites() {
+		return disponiblites;
 	}
 
 
-	public void setExperiances(List<Experiance> experiances) {
-		this.experiances = experiances;
+	public void setDisponiblites(List<Disponiblite> disponiblites) {
+		this.disponiblites = disponiblites;
 	}
 
 
 	public ChercheurJ(Long idC, String prenom, String nom, Date dateNaissance, String ville, int numSecSoc,
 			String nationalite, String email, int telephone, int codepostale, String paysResidance,
 			List<Experiance> experiance, List<Candidature> candidatures, com.example.demo.DAO.preferance preferance,
-			List<Experiance> experiances) {
+			List<Disponiblite> disponiblites) {
 		super();
 		this.idC = idC;
 		Prenom = prenom;
@@ -223,7 +223,7 @@ public class ChercheurJ implements Serializable {
 		this.experiance = experiance;
 		this.candidatures = candidatures;
 		this.preferance = preferance;
-		this.experiances = experiances;
+		this.disponiblites = disponiblites;
 	}
 
 
@@ -232,4 +232,6 @@ public class ChercheurJ implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	
 }

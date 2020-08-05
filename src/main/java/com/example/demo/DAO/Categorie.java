@@ -19,6 +19,7 @@ public class Categorie implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCateg;
 	private String nomCateg;
+	private String images;
 	
 	@OneToMany(
 			mappedBy = "categorie",
@@ -75,12 +76,24 @@ public class Categorie implements Serializable {
 	public void setPreferances(List<preferance> preferances) {
 		this.preferances = preferances;
 	}
+	
 
-	public Categorie(long idCateg, String nomCateg, List<TypeTravail> typeTravails, List<Mission> missions,
-			List<preferance> preferances) {
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
+	}
+
+	
+
+	public Categorie(long idCateg, String nomCateg, String images, List<TypeTravail> typeTravails,
+			List<Mission> missions, List<preferance> preferances) {
 		super();
 		this.idCateg = idCateg;
 		this.nomCateg = nomCateg;
+		this.images = images;
 		this.typeTravails = typeTravails;
 		this.missions = missions;
 		this.preferances = preferances;

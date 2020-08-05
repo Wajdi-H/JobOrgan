@@ -30,9 +30,6 @@ public class Experiance  implements Serializable {
 	 @ManyToOne(cascade = CascadeType.ALL)
 	    @JoinColumn(name="Chercheurid")
 	    private ChercheurJ chercheur;
-	 
-	 @ManyToMany(mappedBy = "experiances")
-	    private List<ChercheurJ>chercheurJs ;
 
 	public long getIdExper() {
 		return idExper;
@@ -106,16 +103,8 @@ public class Experiance  implements Serializable {
 		this.chercheur = chercheur;
 	}
 
-	public List<ChercheurJ> getChercheurJs() {
-		return chercheurJs;
-	}
-
-	public void setChercheurJs(List<ChercheurJ> chercheurJs) {
-		this.chercheurJs = chercheurJs;
-	}
-
 	public Experiance(long idExper, String nomentreprise, String domaine, String posteoccupe, Date datedeb,
-			Date dateFin, String competances, String description, ChercheurJ chercheur, List<ChercheurJ> chercheurJs) {
+			Date dateFin, String competances, String description, ChercheurJ chercheur) {
 		super();
 		this.idExper = idExper;
 		this.nomentreprise = nomentreprise;
@@ -126,13 +115,16 @@ public class Experiance  implements Serializable {
 		Competances = competances;
 		Description = description;
 		this.chercheur = chercheur;
-		this.chercheurJs = chercheurJs;
 	}
 
 	public Experiance() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	 
+	
+
+
 	 
 	 
 }
