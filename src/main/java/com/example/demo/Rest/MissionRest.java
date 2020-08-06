@@ -1,5 +1,7 @@
 package com.example.demo.Rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +30,7 @@ public class MissionRest {
 	@Autowired
 	private MissionRepository  missionRepository ;
 	
-	@PostMapping("add") 
+	@PostMapping("/add") 
 	
 	public void save(@RequestBody Mission mission)
 	{
@@ -36,7 +38,15 @@ public class MissionRest {
 		missionRepository.save(mission);
 	}
 	
- 	@GetMapping("/{id}")
+	
+	@GetMapping("/get")
+	public List<Mission> getmission()
+	{
+		return missionRepository.findAll();
+	}
+	
+	
+ 	@GetMapping("/get/{id}")
 	public Mission findById(@PathVariable Long id)
 	{
 		return missionRepository.findById(id).get();
@@ -46,7 +56,7 @@ public class MissionRest {
 	
 		missionRepository.deleteById(id);
 	}
-	@PutMapping("edit/{idMission}")  // modification
+	@PutMapping("/edit/{idMission}")  // modification
 
 	public void update(@PathVariable Long idMission , @RequestBody Mission mission)
 	

@@ -11,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Categorie implements Serializable {
@@ -25,11 +28,10 @@ public class Categorie implements Serializable {
 			mappedBy = "categorie",
 			fetch = FetchType.LAZY)
 	private List<TypeTravail> typeTravails ;
-	
-	@OneToMany(
-			mappedBy = "categorie",
-			fetch = FetchType.LAZY)
-	private List<Mission> missions ;
+	@JsonIgnore
+	@ManyToOne()
+	@JoinColumn(name="Missionid")
+	private Mission mission;
 
     @ManyToMany
     @JoinTable(name="categorieprefrances",joinColumns=
@@ -61,13 +63,7 @@ public class Categorie implements Serializable {
 		this.typeTravails = typeTravails;
 	}
 
-	public List<Mission> getMissions() {
-		return missions;
-	}
 
-	public void setMissions(List<Mission> missions) {
-		this.missions = missions;
-	}
 
 	public List<preferance> getPreferances() {
 		return preferances;
@@ -88,14 +84,26 @@ public class Categorie implements Serializable {
 
 	
 
-	public Categorie(long idCateg, String nomCateg, String images, List<TypeTravail> typeTravails,
-			List<Mission> missions, List<preferance> preferances) {
+
+
+	public Mission getMission() {
+		return mission;
+	}
+
+	public void setMission(Mission mission) {
+		this.mission = mission;
+	}
+
+	
+	
+	public Categorie(long idCateg, String nomCateg, String images, List<TypeTravail> typeTravails, Mission mission,
+			List<preferance> preferances) {
 		super();
 		this.idCateg = idCateg;
 		this.nomCateg = nomCateg;
 		this.images = images;
 		this.typeTravails = typeTravails;
-		this.missions = missions;
+		this.mission = mission;
 		this.preferances = preferances;
 	}
 

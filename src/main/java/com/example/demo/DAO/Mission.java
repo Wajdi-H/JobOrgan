@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Mission implements Serializable {
 	@Id
@@ -23,6 +25,8 @@ public class Mission implements Serializable {
 	private String Description;
 	private String vehicule;
 	private String accessoires;
+	private String Localisation;
+	private float budget;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Categorieid")
@@ -32,7 +36,7 @@ public class Mission implements Serializable {
     @JoinColumn(name="Entrepriseid")
     private Entreprise entreprise;
 	
-	
+	@JsonIgnore
 	@OneToMany(
 			mappedBy = "mission",
 			fetch = FetchType.LAZY)
@@ -129,8 +133,35 @@ public class Mission implements Serializable {
 	}
 
 
+
+
+
+	public String getLocalisation() {
+		return Localisation;
+	}
+
+
+	public void setLocalisation(String localisation) {
+		Localisation = localisation;
+	}
+
+
+	public float getBudget() {
+		return budget;
+	}
+
+
+	public void setBudget(float budget) {
+		this.budget = budget;
+	}
+
+
+	
+
+
 	public Mission(long idMission, String titreMission, String competances, String description, String vehicule,
-			String accessoires, Categorie categorie, Entreprise entreprise, List<Candidature> candidatures) {
+			String accessoires, String localisation, float budget, Categorie categorie, Entreprise entreprise,
+			List<Candidature> candidatures) {
 		super();
 		this.idMission = idMission;
 		TitreMission = titreMission;
@@ -138,6 +169,8 @@ public class Mission implements Serializable {
 		Description = description;
 		this.vehicule = vehicule;
 		this.accessoires = accessoires;
+		Localisation = localisation;
+		this.budget = budget;
 		this.categorie = categorie;
 		this.entreprise = entreprise;
 		this.candidatures = candidatures;
