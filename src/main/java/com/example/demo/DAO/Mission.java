@@ -156,9 +156,6 @@ public class Mission implements Serializable {
 	}
 
 
-	
-
-
 	public Mission(long idMission, String titreMission, String competances, String description, String vehicule,
 			String accessoires, String localisation, float budget, Categorie categorie, Entreprise entreprise,
 			List<Candidature> candidatures) {
